@@ -21,6 +21,18 @@ a:visited{
 a:hover{
     color:#555;
 }
+
+.alert-green{
+    background: green ;
+    color: white;
+}
+
+.alert-red {
+    background: red;
+    color: white;
+}
+
+
 //-----------------------Container-----------------------------------------/
 #container{
     width: 80%;

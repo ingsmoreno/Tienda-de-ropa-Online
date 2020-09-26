@@ -1,15 +1,33 @@
 <?php
+
+session_start();
 require_once 'autoload.php';
+require_once 'config/conexion_db.php';
+require_once 'config/parameters.php';
+require_once 'helpers/utils.php';
 require_once 'views/layout/header.php';
 require_once 'views/layout/sidebar.php';
 
+//---FUNCION DE ERROR 404---//
+function show_error(){
+    $error = new ErrorController();
+    $error->index();
+}
 
+
+//---CONTROLADOR EN URL----//
 if (isset($_GET['controller'])) {
     $nombre_controlador = $_GET['controller'].'Controller';
+
+}elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {
+        $nombre_controlador = controller_default;
+
 }else {
-    echo "La pagina que buscas no existe";
+    show_error();
     exit();
 }
+
+//---CONTROLADOR ACTION EN URL---//
 
 if (isset($nombre_controlador) && class_exists($nombre_controlador)) {
     
@@ -20,14 +38,19 @@ if (isset($nombre_controlador) && class_exists($nombre_controlador)) {
         $action = $_GET['action'];
         $controlador->$action();
         
+    }elseif (!isset($_GET['controller']) && !isset($_GET['action'])){
+
+        $action_default = action_default;
+        $controlador->$action_default();
     }else {
-        echo "La pagina que buscas no existe";
+       show_error();
     }
 
 }else {
-    echo "Las paginas que buscan no existen";
+    show_error();
 }
 
+//----VIEW FOOTER--//
 require_once 'views/layout/footer.php';
 
 

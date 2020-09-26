@@ -1,6 +1,6 @@
 <?php
 
-class Connect(){
+class Database{
 
     public static function connect(){
         $db = new mysqli ("localhost", "administrador", "admin", "tienda_master");

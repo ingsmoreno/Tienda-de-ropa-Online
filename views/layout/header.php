@@ -3,14 +3,14 @@
     <head>
         <title>Tienda Online</title>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="assets/css/estilos.css" type="text/css">
+        <link rel="stylesheet" href="<?=base_url?>assets/css/estilos.css" type="text/css">
     </head>
 <body>
 <div id = "container">
     <!-------------------------------------HEADER----------------------------->
         <header id = "header">
             <div id ="logo">
-                <img src="assets/images/camiseta.png" alt=""/>
+                <img src="<?=base_url?>assets/images/camiseta.png" alt=""/>
                     <a href="">
                         TIENDA DE CAMISETAS
                     </a>

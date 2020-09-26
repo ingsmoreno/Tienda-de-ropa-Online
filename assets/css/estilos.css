@@ -20,6 +20,16 @@ a:hover {
   color: #555;
 }
 
+.alert-green {
+  background: green;
+  color: white;
+}
+
+.alert-red {
+  background: red;
+  color: white;
+}
+
 #container {
   width: 80%;
   margin: 0 auto;
