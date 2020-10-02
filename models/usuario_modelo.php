@@ -1,14 +1,14 @@
 <?php
 
 class Usuario{
-    public $id;
-    public $nombre;
-    public $apellidos;
-    public $email;
-    public $password; 
-    public $rol;
-    public $image;
-    public $db;
+    private $id;
+    private $nombre;
+    private $apellidos;
+    private $email;
+    private $password; 
+    private $rol;
+    private $image;
+    private $db;
 
     public function __construct(){
         $this->db = Database::connect();

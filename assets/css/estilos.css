@@ -30,6 +30,22 @@ a:hover {
   color: white;
 }
 
+table {
+  text-align: center;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+td {
+  border-top: 1px solid #ccc;
+  padding: 8px;
+}
+
+th {
+  background: #c0d8b1;
+  padding: 8px;
+}
+
 #container {
   width: 80%;
   margin: 0 auto;
@@ -158,11 +174,16 @@ a:hover {
   margin-bottom: 5px;
 }
 
+.form_container {
+  width: 50%;
+}
+
 label,
 input[type="text"],
 input[type="password"],
 input[type="email"],
-select {
+input[type="number"]
+select, textarea {
   display: block;
   width: 95%;
   margin-top: 2px;
@@ -172,7 +193,8 @@ select {
 input[type="text"],
 input[type="password"],
 input[type="email"],
-select {
+input[type="number"]
+select, textarea {
   border: 1px solid #c9c9c9;
   -webkit-box-shadow: 0px 0px 2px #ccc inset;
           box-shadow: 0px 0px 2px #ccc inset;
@@ -196,6 +218,7 @@ button, .button {
   display: block;
   padding-left: 10px;
   padding-right: 10px;
+  border-bottom: 10px;
   border-radius: 2px;
   width: auto;
   padding: 5px;
@@ -209,6 +232,12 @@ button, .button {
   background: green;
   color: white !important;
   text-decoration: none;
+}
+
+.button-small {
+  width: 126px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 label,

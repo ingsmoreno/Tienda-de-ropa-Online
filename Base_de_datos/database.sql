@@ -37,6 +37,8 @@ CREATE TABLE productos(
     CONSTRAINT fk_productos_categoria FOREIGN KEY (categoria_id) REFERENCES categorias(id)
 )ENGINE=InnoDB;
 
+INSERT INTO productos VALUES (NULL, 2, 'Tirantes', 'color azul', 500.00, 5, 'si', CURDATE(), '' );
+
 CREATE TABLE pedidos(
     id                      int(255) auto_increment not null,
     usuario_id              int(255) not null,
