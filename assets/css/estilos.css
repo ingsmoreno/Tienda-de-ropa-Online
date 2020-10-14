@@ -12,12 +12,46 @@ a {
   color: #01b1ea;
 }
 
+.registro {
+  margin: 50px;
+}
+
 a:visited {
   color: #01b1ea;
 }
 
 a:hover {
   color: #555;
+}
+
+.alert-green {
+  background: green;
+  color: white;
+}
+
+.alert-red {
+  background: red;
+  color: white;
+}
+
+table {
+  text-align: center;
+  width: 100%;
+  border: 1px solid #ccc;
+}
+
+td {
+  border-top: 1px solid #ccc;
+  padding: 8px;
+}
+
+th {
+  background: #c0d8b1;
+  padding: 8px;
+}
+
+.thumb {
+  width: 100px;
 }
 
 #container {
@@ -148,11 +182,16 @@ a:hover {
   margin-bottom: 5px;
 }
 
+.form_container {
+  width: 50%;
+}
+
 label,
 input[type="text"],
 input[type="password"],
 input[type="email"],
-select {
+input[type="number"]
+select, textarea {
   display: block;
   width: 95%;
   margin-top: 2px;
@@ -162,7 +201,8 @@ select {
 input[type="text"],
 input[type="password"],
 input[type="email"],
-select {
+input[type="number"]
+select, textarea {
   border: 1px solid #c9c9c9;
   -webkit-box-shadow: 0px 0px 2px #ccc inset;
           box-shadow: 0px 0px 2px #ccc inset;
@@ -186,6 +226,7 @@ button, .button {
   display: block;
   padding-left: 10px;
   padding-right: 10px;
+  border-bottom: 10px;
   border-radius: 2px;
   width: auto;
   padding: 5px;
@@ -196,9 +237,18 @@ button, .button {
 }
 
 .button {
+  width: 75px;
+  margin: auto;
   background: green;
   color: white !important;
   text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.button-small {
+  width: 126px;
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 label,
@@ -237,7 +287,17 @@ button {
   float: left;
   margin-left: 10px;
   margin-right: 10px;
+  margin-bottom: 20px;
   text-align: center;
+}
+
+.product a {
+  color: black;
+  text-decoration: none;
+}
+
+.product a:hover {
+  color: #555;
 }
 
 .product h2 {
@@ -252,10 +312,72 @@ button {
 }
 
 .product img {
-  width: 100px;
+  height: 140px;
   margin-bottom: 10px;
 }
 
+.img-carrito {
+  height: 80px;
+}
+
+.enlace-carrito {
+  text-decoration: none;
+  color: black !important;
+}
+
+.detail-product {
+  width: 100%;
+}
+
+.detail-product img {
+  display: block;
+  width: 30%;
+  float: left;
+  margin-left: 80px;
+}
+
+.detail-product .data {
+  width: 50%;
+  margin-top: 100px;
+  float: right;
+}
+
+.detail-product .descripcion {
+  margin-bottom: 20px;
+}
+
+.detail-product .precio {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: #444;
+}
+
+.detail-product .button {
+  width: 200px;
+  text-align: center;
+  float: left;
+}
+
+/*--TOTAL CARRITO--*/
+.total-carrito {
+  width: 350px;
+  float: right;
+}
+
+.total-carrito h3 {
+  display: block;
+  float: left;
+  margin-top: 6px;
+}
+
+.button-pedido {
+  display: block;
+  width: 150px;
+  margin-right: 0px;
+  text-align: center;
+}
+
+/*-----FOOTER-----*/
 #footer {
   text-align: center;
   padding-top: 10px;
