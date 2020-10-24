@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 session_start();
 require_once 'autoload.php';
 require_once 'config/conexion_db.php';

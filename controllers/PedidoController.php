@@ -1,13 +1,138 @@
-<?php 
+<?php
+require_once 'models/pedido.php';
 
-class pedidoController{
-    
-    public function hacer(){
+class pedidoController
+{
+
+    public function hacer()
+    {
 
         require_once 'views/pedido/hacer.php';
     }
 
-    public function add(){
-            var_dump($_POST);
+    public function add()
+    {
+        if (isset($_SESSION['identity'])) {
+            $usuario_id = $_SESSION['identity']->id;
+            $provincia = isset($_POST['provincia']) ? $_POST['provincia'] : false;
+            $localidad = isset($_POST['localidad']) ? $_POST['localidad'] : false;
+            $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : false;
+
+            $stats = Utils::stadCarrito();
+            $coste = $stats['total'];
+
+            //Guardar los datos en la db
+            if ($provincia && $localidad && $direccion) {
+                $pedido = new Pedido();
+
+                $pedido->setUsuario_id($usuario_id);
+                $pedido->setProvincia($provincia);
+                $pedido->setLocalidad($localidad);
+                $pedido->setDireccion($direccion);
+                $pedido->setCoste($coste);
+
+                $save = $pedido->save();
+
+                //Guardar Linea pedido;
+                $save_lineas = $pedido->saveLinea();
+
+                if ($save && $save_lineas) {
+                    $_SESSION['pedido'] = "completed";
+                } else {
+                    $_SESSION['pedido'] = "Failed";
+                }
+            } else {
+                $_SESSION['pedido'] = "Failed";
+            }
+
+            header('location: ' . base_url . 'pedido/confirmado');
+        } else {
+            //redirigir al index
+            header('location: ' . base_url);
+        }
     }
+
+    public function confirmado()
+    {
+        if (isset($_SESSION['identity'])) {
+            $_SESSION['pedido'];
+            $id = $_SESSION['identity'];
+            $pedido = new Pedido();
+            $pedido->setUsuario_id($id->id);
+
+            $pedido = $pedido->getOneByUser();
+
+            $pedido_productos = new Pedido();
+            $productos = $pedido_productos->getProductsByPedido($pedido->id);
+        }
+
+        require_once 'views/pedido/confirmado.php';
+    }
+
+    public function mis_pedidos()
+    {
+            Utils::isIdentity();
+            $id = $_SESSION['identity']->id;
+
+            $pedido = new Pedido();
+            //Sacar los pedidos del usuario;
+            $pedido->setUsuario_id($id);
+            $pedidos = $pedido->getAllByUser();
+        require_once 'views/pedido/mis_pedidos.php';
+    }
+
+    public function detalle(){
+        Utils::isIdentity();
+
+        if (isset($_GET['id'])) {
+            $id = $_GET['id'];
+
+            //Sacar los pedidos;
+            $pedido = new Pedido();
+            $pedido->setId($id);
+            $pedido = $pedido->getOne();
+           
+
+            //Sacar los productos
+            $pedido_productos = new Pedido();
+            $productos = $pedido_productos->getProductsByPedido($id);
+
+        require_once 'views/pedido/detalle.php';
+
+        }else {
+            header('location: '.base_url.'pedido/mis_pedidos');
+        }
+    }
+
+    public function gestion(){
+        Utils::isAdmin();
+        $gestion = true;
+
+        $pedido = new Pedido();
+        $pedidos = $pedido->getAll();
+
+        require_once 'views/pedido/mis_pedidos.php';
+    }
+
+    public function estado(){
+        Utils::isAdmin();
+        if (isset($_POST['pedido_id']) && isset($_POST['estado'])) {
+            //RECOGER DATOS DEL FORM
+            $id = $_POST['pedido_id'];
+            $estado = $_POST['estado'];
+
+            //UPDATE DEL PEDIDO
+            $pedido = new Pedido();
+            $pedido->setId($id);
+            $pedido->setEstado($estado);
+
+            $pedidos = $pedido->uptateOne();
+
+            header('location: '.base_url.'pedido/detalle&id='.$id);
+
+        }else{
+            header ('location: '.base_url);
+        }
+    }
+
 }
